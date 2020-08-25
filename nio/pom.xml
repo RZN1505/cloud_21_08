@@ -2,20 +2,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>cloud_21_08</artifactId>
+        <groupId>com.geekbrains</groupId>
+        <version>1</version>
+    </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.geekbrains</groupId>
-    <artifactId>cloud_21_08</artifactId>
-    <packaging>pom</packaging>
-    <version>1</version>
-    <modules>
-        <module>server</module>
-        <module>client</module>
-        <module>common</module>
-        <module>nio</module>
-    </modules>
-
-
+    <artifactId>nio</artifactId>
     <build>
         <plugins>
             <plugin>
@@ -23,8 +17,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
-                    <source>8</source>
-                    <target>8</target>
+                    <source>11</source>
+                    <target>11</target>
                 </configuration>
             </plugin>
         </plugins>

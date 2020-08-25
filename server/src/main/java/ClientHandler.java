@@ -1,6 +1,4 @@
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -33,16 +31,53 @@ public class ClientHandler implements Runnable {
         while (true) {
             try {
                 String message = is.readUTF();
-                System.out.println("message from " + name + ": " + message);
-                server.broadCastMessage(message);
                 if (message.equals("quit")) {
-                    server.kick(this);
+                    os.writeUTF("disconnected");
+                    Thread.sleep(1000);
                     os.close();
                     is.close();
                     socket.close();
                     System.out.println("client " + name + " disconnected");
                     break;
                 }
+                if (message.equals("./upload")) {
+                    String fileName = is.readUTF();
+                    long fileLength = is.readLong();
+                    File file = new File("server/ServerStorage/" + fileName);
+                    file.createNewFile();
+                    try (FileOutputStream fos = new FileOutputStream(file)) {
+                        byte[] buffer = new byte[256];
+                        if (fileLength < 256) {
+                            fileLength += 256;
+                        }
+                        int read = 0;
+                        for (int i = 0; i < fileLength / 256; i++) {
+                            read = is.read(buffer);
+                            fos.write(buffer, 0, read);
+                        }
+                        os.writeUTF("OK");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    String fileName = is.readUTF();
+                    File file = new File("server/ServerStorage/" + fileName);
+                    if (file.exists()) {
+                        os.writeUTF("OK");
+                    } else {
+                        os.writeUTF("WRONG");
+                    }
+                    try (FileInputStream fis = new FileInputStream(file)) {
+                        os.writeLong(file.length());
+                        byte[] buffer = new byte[256];
+                        int read = 0;
+                        while ((read = fis.read(buffer)) != -1) {
+                            os.write(buffer, 0, read);
+                        }
+                        os.flush();
+                    }
+                }
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
