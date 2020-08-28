@@ -3,11 +3,18 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/10.0.2-internal"
-          xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+<GridPane alignment="center" blendMode="MULTIPLY" hgap="10" prefHeight="533.0" prefWidth="376.0" vgap="10" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
    <AnchorPane prefHeight="533.0" prefWidth="376.0">
-      <ListView fx:id="listView" layoutX="14.0" layoutY="15.0" prefHeight="468.0" prefWidth="348.0" />
       <TextField fx:id="text" layoutX="14.0" layoutY="483.0" prefHeight="38.0" prefWidth="294.0" promptText="Введите текст" />
-      <Button fx:id="send" onAction="#sendMessage" layoutX="308.0" layoutY="483.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="54.0" text="SEND" />
+      <ListView fx:id="listViewClient" layoutX="14.0" layoutY="59.0" prefHeight="424.0" prefWidth="167.0" />
+      <TextField fx:id="textStatus" layoutX="7.0" layoutY="11.0" prefHeight="38.0" prefWidth="364.0" promptText="Статус ответа" />
+      <Button fx:id="send" layoutX="308.0" layoutY="483.0" mnemonicParsing="false" onAction="#sendMessage" prefHeight="38.0" prefWidth="54.0" text="SEND" />
+      <ListView fx:id="listViewServer" layoutX="190.0" layoutY="57.0" prefHeight="424.0" prefWidth="174.0" />
    </AnchorPane>
+   <columnConstraints>
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+   </rowConstraints>
 </GridPane>
