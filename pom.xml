@@ -13,6 +13,7 @@
         <module>client</module>
         <module>common</module>
         <module>nio</module>
+        <module>nio-server</module>
     </modules>
 
 
