@@ -6,14 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="nio-server" />
+        <module name="common" />
         <module name="server" />
         <module name="client" />
-        <module name="common" />
-        <module name="nio" />
+        <module name="nio-client" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="nio-server" target="8" />
-    </bytecodeTargetLevel>
   </component>
 </project>
